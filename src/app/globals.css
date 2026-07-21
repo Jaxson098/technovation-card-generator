@@ -1,26 +1,78 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* green */
+  --primary: #0C221E;
+  --secondary: #D9E583;
+  --text: #FAF4EC;
+  --textSecondary: #0A0A0A;
+  
+  --obsidian: #0A0A0A;
+  --navy: #1D1349;
+  --forest: #0C221E;
+  --coral: #F69195;
+  --lime: #D9E583;
+  --electric: #0030EF;
+  --sky: #A7D3F0;
+  --cream: #FAF4EC;
+} 
+
+[data-theme="blue"] {
+  --primary: #0030EF;
+  --secondary: #A7D3F0;
+  --text: #FAF4EC;
+  --textSecondary: #0A0A0A;
+}
+
+[data-theme="forest"] {
+  --primary: #0C221E;
+  --secondary: #D9E583;
+  --text: #FAF4EC;
+  --textSecondary: #0A0A0A;
+}
+
+[data-theme="sky"] {
+  --primary: #A7D3F0;
+  --secondary: #0030EF;
+  --text: #0A0A0A;
+  --textSecondary: #FAF4EC;
+}
+
+[data-theme="pink"] {
+  --primary: #1D1349;
+  --secondary: #F69195;
+  --text: #FAF4EC;
+  --textSecondary: #0A0A0A;
+}
+
+[data-theme="navy"] {
+  --primary: #1D1349;
+  --secondary: #D9E583;
+  --text: #FAF4EC;
+  --textSecondary: #0A0A0A;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-text: var(--text);
+  --color-textSecondary: var(--textSecondary);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-obsidian: var(--obsidian);
+  --color-navy: var(--navy);
+  --color-forest: var(--forest);
+  --color-coral: var(--coral);
+  --color-lime: var(--lime);
+  --color-electric: var(--electric);
+  --color-sky: var(--sky);
+  --color-cream: var(--cream);
+
+  --font-instrument-sans: var(--font-instrument-sans);
+  --font-castoro: var(--font-castoro);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--primary);
+  color: var(--text);
+  font-family: var(--font-instrument-sans);
 }

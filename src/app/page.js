@@ -1,65 +1,106 @@
-import Image from "next/image";
+'use client'
+
+import { useState } from "react";
+import TextLogo from "@/components/textLogo";
+import IconLogo from "@/components/iconLogo";
+import PartnershipCard from "@/components/partnershipCard";
+import InnovationCard from "@/components/innovationCard";
+import * as htmlToImage from 'html-to-image';
+// import { toPng } from "html-to-image"
+import download from "downloadjs";
+import { flushSync } from "react-dom";
+//colorschemes: navy, coral, sky, forest, electric, lime
 
 export default function Home() {
+
+  const [card_type, set_card_type] = useState("innovation")
+  const [colorscheme, set_colorscheme] = useState("green")
+  const [isEditing, set_is_editing] = useState(true)
+
+  function downloadCard() {
+
+    flushSync(()=>{set_is_editing(false)})
+
+    htmlToImage
+    .toPng(document.getElementById('card-front'), {
+      pixelRatio: 1,
+      width: 1080,
+      height: 1920,
+      canvasHeight: 1920,
+      canvasWidth: 1080,
+      style: {
+        transform: "none",
+        transformOrigin: "top left",
+      },
+    })
+    .then((dataUrl) => {download(dataUrl, `technovision-${card_type}-card-front.png`);});
+
+    htmlToImage
+    .toPng(document.getElementById('card-back'), {
+      pixelRatio: 1,
+      width: 1080,
+      height: 1920,
+      canvasHeight: 1920,
+      canvasWidth: 1080,
+      style: {
+        transform: "none",
+        transformOrigin: "top left",
+      },
+    })
+    .then((dataUrl) => {download(dataUrl, `technovision-${card_type}-card-back.png`); set_is_editing(true)});
+
+  }
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="flex">
+
+      {/* sidebar section */}
+      <div className="w-1/4 px-3 2xl:px-6 py-2 2xl:py-4 flex flex-col bg-secondary h-screen">
+        <TextLogo className="text-primary"/>
+
+        <div className="flex flex-wrap gap-0.5 items-center justify-center mt-2 2xl:mt-6">
+
+          <button className={`justify-self-center ${card_type == "innovation" ? "bg-primary text-text shadow-lg hover:brightness-90" : "text-textSecondary hover:text-cream cursor-pointer"} text-base 2xl:text-xl font-castoro italic rounded-md px-3 py-1 transition-all`}
+            onClick={()=>{set_card_type("innovation")}}>
+            Innovation Card
+          </button>
+
+          <button className={`justify-self-center ${card_type == "partner" ? "bg-primary text-text shadow-lg hover:brightness-90" : "text-textSecondary hover:text-cream cursor-pointer"} text-base 2xl:text-xl font-castoro italic rounded-md px-3 py-1 transition-all`}
+            onClick={()=>{set_card_type("partner")}}>
+            Partnership Card
+          </button>
+
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <h2 className={`text-textSecondary font-castoro italic text-xl 2xl:text-3xl mt-1.5 2xl:mt-5`}>Theme:</h2>
+
+        <div className="flex justify-evenly gap-3 mt-1 flex-col md:flex-row 2xl:mt-2">
+          
+          <IconLogo Tcolor="#FAF4EC" className={`shrink min-w-10 max-w-16 2xl:max-w-25 p-2 rounded-xl shadow-lg text-lime bg-forest border-3 border-transparent ${colorscheme == "green" ? "" : "cursor-pointer  shadow-lg hover:border-lime hover:-translate-y-1 brightness-70 hover:brightness-100"} transition-all`}
+            onClick={()=>{set_colorscheme("green"); document.documentElement.dataset.theme = "green";}}
+          />
+
+          <IconLogo Tcolor="#FAF4EC" className={`shrink min-w-10 max-w-16 2xl:max-w-25 p-2 rounded-xl shadow-lg text-sky bg-electric border-3 border-transparent ${colorscheme == "blue" ? "" : "cursor-pointer  shadow-lg hover:border-sky hover:-translate-y-1 brightness-70 hover:brightness-100"} transition-all`}
+            onClick={()=>{set_colorscheme("blue"); document.documentElement.dataset.theme = "blue";}}
+          />
+
+          <IconLogo Tcolor="#FAF4EC" className={`shrink min-w-10 max-w-16 2xl:max-w-25 p-2 rounded-xl shadow-lg text-coral bg-navy border-3 border-transparent ${colorscheme == "pink" ? "" : "cursor-pointer  shadow-lg hover:border-coral hover:-translate-y-1 brightness-70 hover:brightness-100"} transition-all`}
+            onClick={()=>{set_colorscheme("pink"); document.documentElement.dataset.theme = "pink";}}
+          />
+
         </div>
-      </main>
+
+        <div className="flex justify-center items-center mt-auto font-instrument-sans font-extrabold">
+          <button className="mt-auto bg-primary px-4 py-2 hover:brightness-120 rounded-lg text-xl cursor-pointer hover:-translate-y-1 transition-all shadow-lg" onClick={downloadCard}>Download</button>
+        </div>
+
+      </div>
+
+      {/* card section */}
+      {card_type == "innovation" ? <InnovationCard isEditing={isEditing}/> : (<PartnershipCard isEditing={isEditing}/>)}
+
     </div>
   );
 }
+// #7D7A76
+//#E1DCD4

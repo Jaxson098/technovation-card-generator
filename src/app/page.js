@@ -19,7 +19,7 @@ export default function Home() {
 
   function downloadCard() {
 
-    const name = document.getElementById('name').textContent
+    const name = document.getElementById('name').textContent.replaceAll(" ", "-")
     const cardBack = document.getElementById('card-back')
 
     flushSync(()=>{set_is_editing(false)})

@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  /* green */
-  --primary: #0C221E;
-  --secondary: #D9E583;
+
+  /* pink */
+  --primary: #1D1349;
+  --secondary: #F69195;
   --text: #FAF4EC;
   --textSecondary: #0A0A0A;
   
@@ -24,29 +25,8 @@
   --textSecondary: #0A0A0A;
 }
 
-[data-theme="forest"] {
+[data-theme="green"] {
   --primary: #0C221E;
-  --secondary: #D9E583;
-  --text: #FAF4EC;
-  --textSecondary: #0A0A0A;
-}
-
-[data-theme="sky"] {
-  --primary: #A7D3F0;
-  --secondary: #0030EF;
-  --text: #0A0A0A;
-  --textSecondary: #FAF4EC;
-}
-
-[data-theme="pink"] {
-  --primary: #1D1349;
-  --secondary: #F69195;
-  --text: #FAF4EC;
-  --textSecondary: #0A0A0A;
-}
-
-[data-theme="navy"] {
-  --primary: #1D1349;
   --secondary: #D9E583;
   --text: #FAF4EC;
   --textSecondary: #0A0A0A;

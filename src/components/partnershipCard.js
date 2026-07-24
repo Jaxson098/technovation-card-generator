@@ -8,7 +8,7 @@ export default function PartnershipCard({ isEditing }) {
 
     const [scale, set_scale] = useState(0.1)
     const availbileSpaceRef = useRef(null)
-    const [name, set_name] = useState("Your Organization Name");
+    const [name, set_name] = useState("Organization Name");
 
     useEffect(()=>{
         function updateScale() {
@@ -118,7 +118,7 @@ function Front( {isEditing, set_name} ) {
                 </div>
             </div>
 
-            <div data-placeholder="Your Organization Name" className={`
+            <div id="name" data-placeholder="Your Organization Name" className={`
                 empty:before:content-[attr(data-placeholder)] empty:before:text-text/50 empty:before:pointer-events-none 
                 outline-none focus:outline-none focus:ring-0
                 text-7xl font-bold w-fit ${isEditing ? "border-4 border-dashed border-text" : ""} py-2 px-4 line-clamp-2 max-w-full`}
@@ -198,7 +198,7 @@ function Back( {isEditing, name} ) {
 
             <div className="flex justify-evenly">
 
-                <div className="flex flex-col gap-2 line-clamp-3 max-w-full">
+                <div className="flex flex-col gap-2 line-clamp-1 max-w-1/3">
                     <div data-placeholder="#" className={`
                         empty:before:content-[attr(data-placeholder)] empty:before:text-secondary/50 empty:before:pointer-events-none 
                         outline-none focus:outline-none focus:ring-0
@@ -211,7 +211,7 @@ function Back( {isEditing, name} ) {
                     <h3 className="font-medium text-3xl text-text tracking-wider">DAYS / WEEK</h3>
                 </div>
 
-                <div className="flex flex-col gap-2 line-clamp-3 max-w-full">
+                <div className="flex flex-col gap-2 line-clamp-1 max-w-1/3">
                     <div data-placeholder="#" className={`
                         empty:before:content-[attr(data-placeholder)] empty:before:text-secondary/50 empty:before:pointer-events-none 
                         outline-none focus:outline-none focus:ring-0
@@ -224,7 +224,7 @@ function Back( {isEditing, name} ) {
                     <h3 className="font-medium text-3xl text-text tracking-wider">WEEKS TOTAL</h3>
                 </div>
 
-                <div className="flex flex-col gap-2 line-clamp-3 max-w-full">
+                <div className="flex flex-col gap-2 line-clamp-1 max-w-1/3">
                     <div data-placeholder="#" className={`
                         empty:before:content-[attr(data-placeholder)] empty:before:text-secondary/50 empty:before:pointer-events-none 
                         outline-none focus:outline-none focus:ring-0

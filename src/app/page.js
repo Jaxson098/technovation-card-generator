@@ -65,19 +65,19 @@ export default function Home() {
 
         <div className="flex flex-wrap gap-0.5 items-center justify-center mt-2 2xl:mt-6">
 
-          <button className={`justify-self-center ${card_type == "innovation" ? "bg-primary text-text shadow-lg hover:brightness-90" : "text-textSecondary hover:text-cream cursor-pointer"} text-base 2xl:text-xl font-castoro italic rounded-md px-3 py-1 transition-all`}
+          <button className={`justify-self-center ${card_type == "innovation" ? "bg-primary text-text shadow-lg hover:brightness-90" : "text-textSecondary hover:text-cream cursor-pointer"} text-xs lg:text-base 2xl:text-xl font-castoro italic rounded-md px-1 lg:px-3 py-1 transition-all`}
             onClick={()=>{set_card_type("innovation")}}>
             Innovation Card
           </button>
 
-          <button className={`justify-self-center ${card_type == "partner" ? "bg-primary text-text shadow-lg hover:brightness-90" : "text-textSecondary hover:text-cream cursor-pointer"} text-base 2xl:text-xl font-castoro italic rounded-md px-3 py-1 transition-all`}
+          <button className={`justify-self-center ${card_type == "partner" ? "bg-primary text-text shadow-lg hover:brightness-90" : "text-textSecondary hover:text-cream cursor-pointer"} text-xs lg:text-base 2xl:text-xl font-castoro italic rounded-md px-1 lg:px-3 py-1 transition-all`}
             onClick={()=>{set_card_type("partner")}}>
             Partnership Card
           </button>
 
         </div>
 
-        <h2 className={`text-textSecondary font-castoro italic text-xl 2xl:text-3xl mt-1.5 2xl:mt-5`}>Theme:</h2>
+        <h2 className={`text-textSecondary font-castoro italic text-base lg:text-xl 2xl:text-3xl mt-1.5 2xl:mt-5`}>Theme:</h2>
 
         <div className="flex justify-evenly gap-3 mt-1 flex-col md:flex-row 2xl:mt-2">
 
@@ -96,7 +96,7 @@ export default function Home() {
         </div>
 
         <div className="flex justify-center items-center mt-auto font-instrument-sans font-extrabold">
-          <button className="mt-auto bg-primary px-4 py-2 hover:brightness-120 rounded-lg text-xl cursor-pointer hover:-translate-y-1 transition-all shadow-lg" onClick={downloadCard}>Download</button>
+          <button className="mt-auto bg-primary px-1 lg:px-4 py-2 hover:brightness-120 rounded-lg text-base lg:text-xl 2xl:text-3xl cursor-pointer hover:-translate-y-1 transition-all shadow-lg" onClick={downloadCard}>Download</button>
         </div>
 
       </div>

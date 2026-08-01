@@ -121,7 +121,7 @@ function Front( {isEditing, set_name} ) {
             <div id="name" data-placeholder="Your Organization Name" className={`
                 empty:before:content-[attr(data-placeholder)] empty:before:text-text/50 empty:before:pointer-events-none 
                 outline-none focus:outline-none focus:ring-0
-                text-7xl font-bold w-fit ${isEditing ? "border-4 border-dashed border-text" : ""} py-2 px-4 line-clamp-2 max-w-full`}
+                text-7xl font-bold w-fit ${isEditing ? "border-4 border-dashed border-text" : ""} py-2 px-4 line-clamp-2 max-w-full break-words`}
                 suppressContentEditableWarning 
                 contentEditable="true" 
                 onInput={(event)=>{if (event.currentTarget.innerText.trim() == ""){event.currentTarget.innerText = ""; set_name("Your Organization")} else set_name(event.currentTarget.innerText)}}
@@ -144,7 +144,7 @@ function Front( {isEditing, set_name} ) {
             <div data-placeholder="A one-sentence summary of what this partnership makes possible" className={`
                 empty:before:content-[attr(data-placeholder)] empty:before:text-text/50 empty:before:pointer-events-none 
                 outline-none focus:outline-none focus:ring-0
-                text-6xl tracking-wider font-castoro italic font-medium w-fit ${isEditing ? "border-4 border-dashed border-text" : ""} py-2 px-4  line-clamp-6 max-w-full`}
+                text-6xl tracking-wider font-castoro italic font-medium w-fit ${isEditing ? "border-4 border-dashed border-text" : ""} py-2 px-4  line-clamp-6 max-w-full break-words`}
                 suppressContentEditableWarning 
                 contentEditable="true" 
                 onInput={(event)=>{if (event.currentTarget.innerText.trim() == ""){event.currentTarget.innerText = ""}}}
@@ -186,7 +186,7 @@ function Back( {isEditing, name} ) {
                 <div data-placeholder="The summarized goals of your program (e.g give students a working feedback loop: pitch a real problem, ship a prototype, present to the community.)" className={`
                     empty:before:content-[attr(data-placeholder)] empty:before:text-text/50 empty:before:pointer-events-none 
                     outline-none focus:outline-none focus:ring-0
-                    text-4xl w-fit ${isEditing ? "border-4 border-dashed border-text py-2 px-4" : ""} line-clamp-4 max-w-full`}
+                    text-4xl w-fit ${isEditing ? "border-4 border-dashed border-text py-2 px-4" : ""} line-clamp-4 max-w-full break-words`}
                     suppressContentEditableWarning 
                     contentEditable="true" 
                     onInput={(event)=>{if (event.currentTarget.innerText.trim() == ""){event.currentTarget.innerText = ""}}}
@@ -266,7 +266,7 @@ function Back( {isEditing, name} ) {
                         <div data-placeholder="Your recruitment method (e.g through STEM electives and the school innovation club)" className={`
                             empty:before:content-[attr(data-placeholder)] empty:before:text-text/50 empty:before:pointer-events-none 
                             outline-none focus:outline-none focus:ring-0
-                            text-4xl w-fit ${isEditing ? "border-4 border-dashed border-text py-2 px-4" : ""} line-clamp-3 max-w-full`}
+                            text-4xl w-fit ${isEditing ? "border-4 border-dashed border-text py-2 px-4" : ""} line-clamp-3 max-w-full break-words`}
                             suppressContentEditableWarning 
                             contentEditable="true" 
                             onInput={(event)=>{if (event.currentTarget.innerText.trim() == ""){event.currentTarget.innerText = ""}}}
@@ -282,7 +282,7 @@ function Back( {isEditing, name} ) {
                         <div data-placeholder="Who are your facilitators (e.g classroom teachers and local university students)" className={`
                             empty:before:content-[attr(data-placeholder)] empty:before:text-text/50 empty:before:pointer-events-none 
                             outline-none focus:outline-none focus:ring-0
-                            text-4xl w-fit ${isEditing ? "border-4 border-dashed border-text py-2 px-4" : ""} line-clamp-3 max-w-full`}
+                            text-4xl w-fit ${isEditing ? "border-4 border-dashed border-text py-2 px-4" : ""} line-clamp-3 max-w-full break-words`}
                             suppressContentEditableWarning 
                             contentEditable="true" 
                             onInput={(event)=>{if (event.currentTarget.innerText.trim() == ""){event.currentTarget.innerText = ""}}}
@@ -298,7 +298,7 @@ function Back( {isEditing, name} ) {
                         <div data-placeholder="How does your program celebrate (e.g project showcase with family members)" className={`
                             empty:before:content-[attr(data-placeholder)] empty:before:text-text/50 empty:before:pointer-events-none 
                             outline-none focus:outline-none focus:ring-0
-                            text-4xl w-fit ${isEditing ? "border-4 border-dashed border-text py-2 px-4" : ""} line-clamp-3 max-w-full`}
+                            text-4xl w-fit ${isEditing ? "border-4 border-dashed border-text py-2 px-4" : ""} line-clamp-3 max-w-full break-words`}
                             suppressContentEditableWarning 
                             contentEditable="true" 
                             onInput={(event)=>{if (event.currentTarget.innerText.trim() == ""){event.currentTarget.innerText = ""}}}

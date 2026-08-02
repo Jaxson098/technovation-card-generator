@@ -36,7 +36,7 @@ export default function Home() {
         transformOrigin: "top left",
       },
     })
-    .then((dataUrl) => {download(dataUrl, `technovision-${name}-${card_type}-card-front.png`); cardBack == null && set_is_editing(true)});
+    .then((dataUrl) => {download(dataUrl, `technovation-${name}-${card_type}-card-front.png`); cardBack == null && set_is_editing(true)});
 
     if (cardBack != null) {
       htmlToImage
@@ -51,7 +51,7 @@ export default function Home() {
           transformOrigin: "top left",
         },
       })
-      .then((dataUrl) => {download(dataUrl, `technovision-${name}-${card_type}-card-back.png`); set_is_editing(true)});
+      .then((dataUrl) => {download(dataUrl, `technovation-${name}-${card_type}-card-back.png`); set_is_editing(true)});
     }
 
   }

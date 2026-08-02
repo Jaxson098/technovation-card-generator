@@ -1,8 +1,8 @@
 'use client'
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useId } from "react"
 import TextLogo from "./textLogo"
-import { House, MapPin, Calendar, Megaphone, UserStar, Award, Mail } from "lucide-react";
+import { House, MapPin, Calendar, Megaphone, UserStar, Award, Mail, Plus, X } from "lucide-react";
 
 export default function PartnershipCard({ isEditing }) {
 
@@ -73,7 +73,7 @@ function Front( {isEditing, set_name} ) {
             </div>
 
             <div className="mx-4">
-                <div className="relative flex bg-text text-gray-500 text-3xl h-100 w-full rounded-4xl text-center items-center justify-center"
+                <div className="relative flex bg-text text-gray-500 text-3xl h-100 w-full rounded-4xl text-center items-center justify-center px-5"
                     onDragOver={(e) => e.preventDefault()}
                     onDrop={(e) => {
                         e.preventDefault();
@@ -151,29 +151,106 @@ function Front( {isEditing, set_name} ) {
                 >
             </div>
 
-            <div className="mt-auto flex flex-col gap-8">
-                <hr className="border-none opacity-20 h-1 bg-text"/>
+            <div className="flex flex-col mt-auto">
 
-                <div data-placeholder="# (e.g 48)" className={`
-                    empty:before:content-[attr(data-placeholder)] empty:before:text-secondary/50 empty:before:pointer-events-none 
-                    outline-none focus:outline-none focus:ring-0
-                    text-8xl tracking-wider font-castoro italic font-medium w-fit text-secondary ${isEditing ? "border-4 border-dashed border-text" : ""} py-2 px-4 line-clamp-1 max-w-full`}
-                    suppressContentEditableWarning 
-                    contentEditable="true" 
-                    onInput={(event)=>{if (event.currentTarget.innerText.trim() == ""){event.currentTarget.innerText = ""}}}
-                    >
+                <hr className="border-none opacity-20 h-1 bg-text mb-8"/>
+
+                <div className="flex">
+
+                    <div className="flex flex-col gap-8">
+
+                        <div data-placeholder="#" className={`
+                            empty:before:content-[attr(data-placeholder)] empty:before:text-secondary/50 empty:before:pointer-events-none 
+                            outline-none focus:outline-none focus:ring-0
+                            text-8xl tracking-wider font-castoro italic font-medium w-fit text-secondary ${isEditing ? "border-4 border-dashed border-text" : ""} py-2 px-4 line-clamp-1 max-w-100`}
+                            suppressContentEditableWarning 
+                            contentEditable="true" 
+                            onInput={(event)=>{if (event.currentTarget.innerText.trim() == ""){event.currentTarget.innerText = ""}}}
+                            >
+                        </div>
+
+                        <h3 className="text-3xl tracking-wider font-medium uppercase">YOUTH IN THE PROGRAM</h3>
+                    </div>
+
+                    <div className="flex ml-auto mt-auto">
+                        <Mail className="size-10 inline mt-3"/>
+                        <div data-placeholder="you@email.com" className={`
+                            empty:before:content-[attr(data-placeholder)] empty:before:text-secondary/50 empty:before:pointer-events-none 
+                            outline-none focus:outline-none focus:ring-0
+                            text-3xl w-fit text-secondary ${isEditing ? "border-4 border-dashed border-text" : ""} py-2 px-4 line-clamp-1 max-w-120`}
+                            suppressContentEditableWarning 
+                            contentEditable="true" 
+                            onInput={(event)=>{if (event.currentTarget.innerText.trim() == ""){event.currentTarget.innerText = ""}}}
+                            >
+                        </div>
+                    </div>
+
                 </div>
 
-                <h3 className="text-3xl tracking-wider font-medium uppercase">YOUTH IN THE PROGRAM</h3>
             </div>
             
         </div>
     )
 }
 
-function Back( {isEditing, name} ) {
+function AddPartner({ isEditing, partners, set_partners }) {
+
+    const keyRef = useRef(0)
+
+    if (isEditing) {
+        return (
+            <div hidden={partners.length >= 4} className="flex flex-col items-center justify-center">
+                <button onClick={()=>{set_partners(prev=>[...prev, <Partner key={keyRef.current} thisKey={keyRef.current} set_partners={set_partners}/>]); keyRef.current++}}>
+                    <Plus className="text-secondary size-24 cursor-pointer"/>
+                </button>
+                <h3 className="tracking-wider font-bold text-2xl text-text">ADD PARTNER</h3>
+            </div>
+        )
+    }
+}
+
+function Partner({ thisKey, set_partners }) {
+
+    const [image, set_image] = useState()
+    const id = useId()
+
     return (
-        <div id="card-back" className="w-[1080px] h-[1920px] bg-primary flex flex-col px-16 py-18 gap-10 overflow-auto">
+        <div className="relative flex bg-text text-gray-500 text-2xl h-50 w-50 rounded-4xl text-center items-center justify-center px-3"
+            onDragOver={(e) => e.preventDefault()}
+            onDrop={(e) => {
+                e.preventDefault();
+
+                const file = e.dataTransfer.files[0];
+
+                if (file && file.type.startsWith("image/")) {
+                    set_image(URL.createObjectURL(file));
+                }
+            }}
+        >
+            <input id={id} type="file" accept="image/*" className="hidden"
+                onChange={(e) => {
+                    const file = e.target.files[0];
+
+                    if (file) {
+                        set_image(URL.createObjectURL(file));
+                    }
+                }}
+            />
+
+            <label htmlFor={id} className="absolute inset-0 flex items-center justify-center cursor-pointer px-3">  { !image && "Click or drag to add partner logo"}</label>
+
+            { image && (<img src={image} className="w-full h-full object-contain"/>)}
+
+        </div>
+    )
+}
+
+function Back( {isEditing, name} ) {
+    
+    const [partners, set_partners] = useState([])
+
+    return (
+        <div id="card-back" className="w-[1080px] h-[1920px] bg-primary flex flex-col px-16 py-18 gap-9 overflow-auto">
             <div className="flex items-center">
                 <h3 className="tracking-widest font-bold text-3xl text-secondary max-w-2/3 line-clamp-2 uppercase">{name}</h3>
                 <h3 className="tracking-wider font-bold text-4xl text-text ml-auto">HOW WE RUN</h3>
@@ -309,20 +386,20 @@ function Back( {isEditing, name} ) {
 
             </div>
 
-            <hr className="border-none opacity-20 h-1 bg-text mt-auto"/>
+            <hr className="border-none opacity-20 h-1 bg-text"/>
 
-            <div className="flex">
-                <Mail className="size-10 inline mt-3"/>
-                <div data-placeholder="you@email.com" className={`
-                    empty:before:content-[attr(data-placeholder)] empty:before:text-secondary/50 empty:before:pointer-events-none 
-                    outline-none focus:outline-none focus:ring-0
-                    text-3xl w-fit text-secondary ${isEditing ? "border-4 border-dashed border-text" : ""} py-2 px-4 line-clamp-1 max-w-3/4`}
-                    suppressContentEditableWarning 
-                    contentEditable="true" 
-                    onInput={(event)=>{if (event.currentTarget.innerText.trim() == ""){event.currentTarget.innerText = ""}}}
-                    >
-                </div>
+            <h3 hidden={partners.length <= 0} className="text-5xl font-castoro italic text-secondary">Our Partners</h3>
+
+            <div className={`flex gap-2`}>
+                {partners.map((element, index)=>(
+                    <div className="mx-4 relative" key={index}>
+                        <X hidden={!isEditing} onMouseUp={()=>{set_partners((prev) => prev.filter((arr_element) => arr_element.props.thisKey !== element.props.thisKey))}} className="absolute top-2 right-2 z-50 size-8 text-gray-800"/>
+                        {element}
+                    </div>
+                ))}
+                <AddPartner isEditing={isEditing} partners={partners} set_partners={set_partners}/>
             </div>
+
         </div>
     )
 }

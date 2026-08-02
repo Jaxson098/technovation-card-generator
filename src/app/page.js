@@ -60,7 +60,7 @@ export default function Home() {
     <div className="flex">
 
       {/* sidebar section */}
-      <div className="w-1/5 px-3 2xl:px-6 py-2 2xl:py-4 flex flex-col bg-secondary h-screen">
+      <div className="w-1/5 px-3 2xl:px-6 py-2 2xl:py-4 flex flex-col gap-2 2xl:gap-5 bg-secondary h-screen">
         <TextLogo className="text-primary"/>
 
         <div className="flex flex-wrap gap-0.5 items-center justify-center mt-2 2xl:mt-6">
@@ -77,23 +77,26 @@ export default function Home() {
 
         </div>
 
-        <h2 className={`text-textSecondary font-castoro italic text-base lg:text-xl 2xl:text-3xl mt-1.5 2xl:mt-5`}>Theme:</h2>
+        <div className="flex flex-col">
+          <h2 className={`text-textSecondary font-castoro italic text-base lg:text-xl 2xl:text-3xl mt-2 2xl:mt-6`}>Theme:</h2>
 
-        <div className="flex justify-evenly gap-3 mt-1 flex-col md:flex-row 2xl:mt-2">
+          <div className="flex justify-evenly gap-3 flex-col md:flex-row">
 
-          <IconLogo Tcolor="#FAF4EC" className={`shrink min-w-10 max-w-16 2xl:max-w-25 p-2 rounded-xl shadow-lg text-coral bg-navy border-3 border-transparent ${colorscheme == "pink" ? "" : "cursor-pointer  shadow-lg hover:border-coral hover:-translate-y-1 brightness-70 hover:brightness-100"} transition-all`}
-            onClick={()=>{set_colorscheme("pink"); document.documentElement.dataset.theme = "pink";}}
-          />
-          
-          <IconLogo Tcolor="#FAF4EC" className={`shrink min-w-10 max-w-16 2xl:max-w-25 p-2 rounded-xl shadow-lg text-lime bg-forest border-3 border-transparent ${colorscheme == "green" ? "" : "cursor-pointer  shadow-lg hover:border-lime hover:-translate-y-1 brightness-70 hover:brightness-100"} transition-all`}
-            onClick={()=>{set_colorscheme("green"); document.documentElement.dataset.theme = "green";}}
-          />
+            <IconLogo Tcolor="#FAF4EC" className={`shrink min-w-10 max-w-16 2xl:max-w-25 p-2 rounded-xl shadow-lg text-coral bg-navy border-3 border-transparent ${colorscheme == "pink" ? "" : "cursor-pointer  shadow-lg hover:border-coral hover:-translate-y-1 brightness-70 hover:brightness-100"} transition-all`}
+              onClick={()=>{set_colorscheme("pink"); document.documentElement.dataset.theme = "pink";}}
+            />
+            
+            <IconLogo Tcolor="#FAF4EC" className={`shrink min-w-10 max-w-16 2xl:max-w-25 p-2 rounded-xl shadow-lg text-lime bg-forest border-3 border-transparent ${colorscheme == "green" ? "" : "cursor-pointer  shadow-lg hover:border-lime hover:-translate-y-1 brightness-70 hover:brightness-100"} transition-all`}
+              onClick={()=>{set_colorscheme("green"); document.documentElement.dataset.theme = "green";}}
+            />
 
-          <IconLogo Tcolor="#FAF4EC" className={`shrink min-w-10 max-w-16 2xl:max-w-25 p-2 rounded-xl shadow-lg text-sky bg-electric border-3 border-transparent ${colorscheme == "blue" ? "" : "cursor-pointer  shadow-lg hover:border-sky hover:-translate-y-1 brightness-70 hover:brightness-100"} transition-all`}
-            onClick={()=>{set_colorscheme("blue"); document.documentElement.dataset.theme = "blue";}}
-          />
+            <IconLogo Tcolor="#FAF4EC" className={`shrink min-w-10 max-w-16 2xl:max-w-25 p-2 rounded-xl shadow-lg text-sky bg-electric border-3 border-transparent ${colorscheme == "blue" ? "" : "cursor-pointer  shadow-lg hover:border-sky hover:-translate-y-1 brightness-70 hover:brightness-100"} transition-all`}
+              onClick={()=>{set_colorscheme("blue"); document.documentElement.dataset.theme = "blue";}}
+            />
 
+          </div>
         </div>
+
 
         <div className="flex justify-center items-center mt-auto font-instrument-sans font-extrabold">
           <button className="mt-auto bg-primary px-1 lg:px-4 py-2 hover:brightness-120 rounded-lg text-base lg:text-xl 2xl:text-3xl cursor-pointer hover:-translate-y-1 transition-all shadow-lg" onClick={downloadCard}>Download</button>
@@ -107,5 +110,3 @@ export default function Home() {
     </div>
   );
 }
-// #7D7A76
-//#E1DCD4

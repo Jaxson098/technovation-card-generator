@@ -75,7 +75,7 @@ function Front( { isEditing, set_name } ) {
             </div>
 
             <div className="mx-4 mt-10">
-                <div className="relative flex bg-text text-gray-500 text-3xl h-100 w-full rounded-4xl text-center items-center justify-center"
+                <div className="relative flex bg-text text-gray-500 text-3xl h-100 w-full rounded-4xl text-center items-center justify-center px-5"
                     onDragOver={(e) => e.preventDefault()}
                     onDrop={(e) => {
                         e.preventDefault();
